@@ -2,10 +2,10 @@
 
 // formの回答確認
 function check() {
-    const url = "https://docs.google.com/forms/d/e/1FAIpQLSdQ5UJRU7w_wN1iAVLKIuCC_amn3VZ-Gb7WCXXdhCg2frr3UA/viewform"; //チェックするFormのURL
-    const sheet_id = "15CXJ7pGXnYAXFJr97AftVDHBLSFhXm6fIat6-6U-J80"; //スプレッドシートのID
-    const sheet_name = "mem"; //スプレッドシートのシート名
-    const range = "J2:K42"; //スプレッドシートの参照する範囲(メールアドレスなどがある範囲)
+    const url = ""; //チェックするFormのURL
+    const sheet_id = ""; //スプレッドシートのID
+    const sheet_name = ""; //スプレッドシートのシート名
+    const range = ""; //スプレッドシートの参照する範囲(メールアドレスなどがある範囲)
                             //最後の行が定まっていない場合は、getLastRow()を使うとシートの最後の行番号を動的に取得できる。
                             //例). ("A1:B" + sheet.getLastRow())
 
