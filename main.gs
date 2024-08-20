@@ -47,3 +47,26 @@ function check() {
     console.log(not_submit_person)
     return;
 }
+
+function checkComma(array) {
+  return array !== "";
+}
+
+function sendShift() {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const mem_data = ss.getSheetByName("mem").getRange("J2:U42").getValues();
+    let header = '<p><font size="4" style="font-family: sans-serif; color: #004a6e">RAILSより、Google Form回答状況についてお知らせします。</font></p>';
+    let footer = `<br><br><strong>Google Form自動管理ツール RAILS</strong><br><font size="2"><strong>CREATED BY <a href="https://github.com/uyuyuu09/">uyuyu.create</a></strong></font>`;
+    for(let i = 0; i < mem_data.length; i++) {
+        const name_memo = ss.getSheetByName("mem").getRange("B2:C42").getValues();
+        const mail = mem_data[i][0];
+        const shift = mem_data[i].splice(2);
+        const content = `${name_memo[i][0]}さん` + "\n" + `メールアドレス: ${mail}` + "\n\n" + "シフト:\n" + String(shift.filter(checkComma)).replaceAll(",", "\n") + "\n\n" + `備考: ${name_memo[i][1]}`;
+
+        let Draft = GmailApp.createDraft(mem_data[i][0], "シフト配信", "body" , {
+            name: "RAILS by uyuyu",
+            htmlBody: (header + content.replaceAll("\n", "<br />") + footer),
+        });
+        Draft.send()
+    }
+}
